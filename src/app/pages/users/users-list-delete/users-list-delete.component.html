@@ -1,0 +1,14 @@
+<div class="modal-overlay">
+  <div class="modal-container">
+    <h2 class="modal-title">Confirmação</h2>
+    <p class="modal-content">
+      Deseja realmente excluir este usuário? {{ userDetails.nome }}
+    </p>
+    <div class="modal-actions">
+      <button class="btn cancel-btn" (click)="onCancel()">Cancelar</button>
+      <button class="btn confirm-btn" (click)="onConfirmDelete()">
+        Excluir
+      </button>
+    </div>
+  </div>
+</div>

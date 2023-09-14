@@ -1,0 +1,101 @@
+<main id="main-container">
+  <section class="create-container">
+    <h2>Criar Novo Usuário</h2>
+    <form
+      [formGroup]="usersCreateForm"
+      (submit)="onSubmit()"
+      class="form-container"
+    >
+      <div class="input-row">
+        <mat-form-field appearance="outline" class="input-wrap">
+          <mat-label>Nome</mat-label>
+          <input matInput type="text" formControlName="nome" />
+          <mat-error *ngIf="usersCreateForm.get('nome')?.hasError('required')"
+            >Nome é obrigatório.</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="input-wrap">
+          <mat-label>CPF</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="cpf"
+            cpfFormatter
+            maxlength="11"
+          />
+          <mat-error *ngIf="usersCreateForm.get('cpf')?.hasError('required')"
+            >CPF é obrigatório.</mat-error
+          >
+        </mat-form-field>
+      </div>
+
+      <div class="input-row">
+        <mat-form-field appearance="outline" class="input-wrap">
+          <mat-label>Profissão</mat-label>
+          <input matInput type="text" formControlName="profissao" />
+          <mat-error
+            *ngIf="usersCreateForm.get('profissao')?.hasError('required')"
+            >Profissão é obrigatória.</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="input-wrap">
+          <mat-label>Data de Nascimento</mat-label>
+          <input matInput type="date" formControlName="dataNascimento" />
+          <mat-error
+            *ngIf="usersCreateForm.get('dataNascimento')?.hasError('required')"
+            >Data de Nascimento é obrigatória.</mat-error
+          >
+        </mat-form-field>
+      </div>
+
+      <div class="input-row">
+        <mat-form-field appearance="outline" class="input-wrap">
+          <mat-label>Estado Civil</mat-label>
+          <input matInput type="text" formControlName="estadoCivil" />
+          <mat-error
+            *ngIf="usersCreateForm.get('estadoCivil')?.hasError('required')"
+            >Estado Civil é obrigatório.</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="input-wrap uf-wrap">
+          <mat-label>UF</mat-label>
+          <mat-select formControlName="uf">
+            <mat-option *ngFor="let state of statesEnum" [value]="state">{{
+              state
+            }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="usersCreateForm.get('uf')?.hasError('required')"
+            >UF é obrigatório.</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="input-wrap">
+          <mat-label>Cidade</mat-label>
+          <mat-select formControlName="cidade">
+            <mat-option *ngFor="let city of cities" [value]="city.nome">{{
+              city.nome
+            }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="usersCreateForm.get('cidade')?.hasError('required')"
+            >Cidade é obrigatória.</mat-error
+          >
+        </mat-form-field>
+      </div>
+
+      <div class="actions">
+        <button mat-raised-button (click)="goBack()">Cancelar</button>
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="usersCreateForm.invalid"
+        >
+          Criar Usuário
+        </button>
+      </div>
+    </form>
+  </section>
+</main>

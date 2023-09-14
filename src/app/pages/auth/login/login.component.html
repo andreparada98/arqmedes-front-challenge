@@ -1,0 +1,47 @@
+<main id="login_page">
+  <section class="container">
+    <form [formGroup]="signInForm" (ngSubmit)="submit()">
+      <mat-card class="login-card mat-elevation-z2">
+        <h4 class="teste">Dados de acesso</h4>
+        <mat-form-field class="input_wrap" appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" />
+          <mat-error *ngIf="signInForm.get('email')?.hasError('email')">
+            E-mail inválido
+          </mat-error>
+          <mat-error
+            *ngIf="
+              signInForm.get('password')?.hasError('required') &&
+              !signInForm.get('email')?.hasError('email')
+            "
+            >Campo obrigatório</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field class="input_wrap" appearance="outline">
+          <mat-label>Senha</mat-label>
+          <input matInput type="password" formControlName="password" />
+          <mat-error *ngIf="signInForm.get('password')?.hasError('maxlength')">
+            Senha inválida
+          </mat-error>
+          <mat-error
+            *ngIf="
+              signInForm.get('password')?.hasError('required') &&
+              !signInForm.get('password')?.hasError('maxlength')
+            "
+            >Campo obrigatório</mat-error
+          >
+        </mat-form-field>
+        <button
+          mat-raised-button
+          class="submit"
+          [disabled]="!signInForm.valid"
+          type="submit"
+          color="primary"
+        >
+          Entrar
+        </button>
+      </mat-card>
+    </form>
+  </section>
+</main>

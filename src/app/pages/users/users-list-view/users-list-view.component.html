@@ -1,0 +1,38 @@
+<main>
+  <section class="container">
+    <h2 class="details-title">Detalhes</h2>
+    <hr class="details-line" />
+    <div class="row-wrap">
+      <div class="wrap">
+        <label>Nome</label>
+        {{ userDetails.nome }}
+      </div>
+      <div class="wrap">
+        <label>Data de Nascimento</label>
+        {{ userDetails.dataNascimento | formatDate }}
+      </div>
+      <div class="wrap">
+        <label>CPF</label>
+        {{ userDetails.cpf | formatCPF }}
+      </div>
+    </div>
+    <div class="row-wrap">
+      <div class="wrap">
+        <label>Profissão</label>
+        {{ userDetails.profissao }}
+      </div>
+      <div class="wrap">
+        <label>Estado Civil</label>
+        {{ userDetails.estadoCivil }}
+      </div>
+      <div class="wrap city-wrap">
+        <label>Cidade</label>
+        {{ userDetails.cidade }}
+      </div>
+      <div class="wrap uf-wrap">
+        <label>UF</label>
+        {{ userDetails.uf }}
+      </div>
+    </div>
+  </section>
+</main>
