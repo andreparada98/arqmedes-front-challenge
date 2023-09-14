@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../service/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginDto } from './models/login.dto';
@@ -9,7 +10,10 @@ import { LoginResponse } from './models/login.response';
   providedIn: 'root',
 })
 export class LoginService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private httpClient: HttpClient,
+    private authenticationService: AuthenticationService
+  ) {}
 
   loginHook(payload: LoginDto): Observable<LoginResponse> {
     return this.httpClient
@@ -21,6 +25,7 @@ export class LoginService {
               'currentUser',
               JSON.stringify(response.accessToken)
             );
+            this.authenticationService.setUser(response);
           }
           return response;
         })

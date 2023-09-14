@@ -8,7 +8,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsersListViewComponent } from './users-list-view/users-list-view.component';
 import { SharedModule } from 'src/shared/shared.module';
 import { UsersListDeleteComponent } from './users-list-delete/users-list-delete.component';
-import { UsersEditComponent } from './users-edit/users-edit.component';
 import { UsersCreateComponent } from './users-create/users-create.component';
 
 @NgModule({
@@ -16,7 +15,6 @@ import { UsersCreateComponent } from './users-create/users-create.component';
     UsersListComponent,
     UsersListViewComponent,
     UsersListDeleteComponent,
-    UsersEditComponent,
     UsersCreateComponent,
   ],
   imports: [
