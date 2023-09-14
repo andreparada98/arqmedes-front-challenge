@@ -1,17 +1,1 @@
-{
-  "users": [
-    {
-      "id": 1,
-      "email": "admin@admin.com",
-      "password": "123",
-      "role": "admin",
-      "nome": "André",
-      "cpf": "73544254000",
-      "profissao": "Engenheiro de Software",
-      "dataNascimento": "1998-08-25T20:37:21.755Z",
-      "estadoCivil": "Solteiro",
-      "uf": "MT",
-      "cidade": "Cuiabá"
-    }
-  ]
-}
+{"users":[{"id":1,"email":"admin@admin.com","password":"123","role":"admin","nome":"Andre","cpf":"735.442.540-40","profissao":"Engenheiro de Software","dataNascimento":"1998-08-25T20:37:21.755Z","estadoCivil":"Solteiro","uf":"MT","cidade":"Cuiabá"}]}

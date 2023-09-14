@@ -8,6 +8,12 @@ import { UsersListRequestDto } from './models/users-list.dto';
 import { BaseListResponseMeta } from 'src/shared/model/base-list.model';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { debounceTime } from 'rxjs';
+import { DialogPosition, MatDialog } from '@angular/material/dialog';
+import { UsersListViewComponent } from '../users-list-view/users-list-view.component';
+import { FormDialogData } from '../users-list-view/models/users-list-view-form.model';
+import { UsersListDeleteComponent } from '../users-list-delete/users-list-delete.component';
+import { private_route } from 'src/shared/constants/routes';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users-list',
@@ -34,7 +40,9 @@ export class UsersListComponent extends BaseComponent implements OnInit {
 
   constructor(
     private usersListService: UsersListService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private dialog: MatDialog,
+    private router: Router
   ) {
     super();
   }
@@ -76,9 +84,47 @@ export class UsersListComponent extends BaseComponent implements OnInit {
     this.getUsersOrThrow(request);
   }
 
-  viewUser(user: UsersListResponse) {}
+  viewUser(user: UsersListResponse) {
+    const formDialogData: FormDialogData = {
+      title: 'Detalhes',
+      id: user.id,
+    };
 
-  editUser(user: UsersListResponse) {}
+    this.dialog.open(UsersListViewComponent, {
+      minHeight: 'auto',
 
-  deleteUser(user: UsersListResponse) {}
+      disableClose: false,
+      data: formDialogData,
+    });
+  }
+
+  editUser(user: UsersListResponse) {
+    this.router.navigate([
+      `${private_route.user_list}/${private_route.user_update}/${user.id}`,
+    ]);
+  }
+
+  deleteUser(user: UsersListResponse) {
+    const formDialogData: FormDialogData = {
+      title: 'Exclusão',
+      id: user.id,
+    };
+
+    const dialogRef = this.dialog.open(UsersListDeleteComponent, {
+      minHeight: 'auto',
+
+      disableClose: false,
+      data: formDialogData,
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.getUsersOrThrow({});
+    });
+  }
+
+  goToCreate() {
+    this.router.navigate([
+      `${private_route.user_list}/${private_route.user_create}`,
+    ]);
+  }
 }

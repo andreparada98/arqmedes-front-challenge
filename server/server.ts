@@ -62,6 +62,38 @@ server.post('/users', checkAuthToken, async (req: Request, res: Response) => {
   res.status(201).send(registrationData);
 });
 
+server.put('/users/:id', checkAuthToken, (req: Request, res: Response) => {
+  const { id } = req.params;
+  const updatedUser: UserRegistrationDto = req.body;
+
+  const validationErrors = validateUserRegistration(updatedUser);
+
+  if (validationErrors.length > 0) {
+    res.status(400).json({ errors: validationErrors });
+    return;
+  }
+
+  const users = readUsers();
+  const existingUser = users.find((user: User) => user.id === Number(id));
+
+  if (!existingUser) {
+    res.status(404).send('Usuário não encontrado');
+    return;
+  }
+
+  existingUser.nome = updatedUser.nome;
+  existingUser.cpf = updatedUser.cpf;
+  existingUser.profissao = updatedUser.profissao;
+  existingUser.dataNascimento = updatedUser.dataNascimento;
+  existingUser.estadoCivil = updatedUser.estadoCivil;
+  existingUser.uf = updatedUser.uf;
+  existingUser.cidade = updatedUser.cidade;
+
+  saveUsers(users);
+
+  res.send(existingUser);
+});
+
 server.get('/users', checkAuthToken, (req: Request, res: Response) => {
   let page = Number(req.query['page']) || 1;
   const limit = Number(req.query['limit']) || 10;
