@@ -62,6 +62,38 @@ server.post('/users', checkAuthToken, async (req: Request, res: Response) => {
   res.status(201).send(registrationData);
 });
 
+server.put('/users/:id', checkAuthToken, (req: Request, res: Response) => {
+  const { id } = req.params;
+  const updatedUser: UserRegistrationDto = req.body;
+
+  const validationErrors = validateUserRegistration(updatedUser);
+
+  if (validationErrors.length > 0) {
+    res.status(400).json({ errors: validationErrors });
+    return;
+  }
+
+  const users = readUsers();
+  const existingUser = users.find((user: User) => user.id === Number(id));
+
+  if (!existingUser) {
+    res.status(404).send('Usuário não encontrado');
+    return;
+  }
+
+  existingUser.nome = updatedUser.nome;
+  existingUser.cpf = updatedUser.cpf;
+  existingUser.profissao = updatedUser.profissao;
+  existingUser.dataNascimento = updatedUser.dataNascimento;
+  existingUser.estadoCivil = updatedUser.estadoCivil;
+  existingUser.uf = updatedUser.uf;
+  existingUser.cidade = updatedUser.cidade;
+
+  saveUsers(users);
+
+  res.send(existingUser);
+});
+
 server.get('/users', checkAuthToken, (req: Request, res: Response) => {
   let page = Number(req.query['page']) || 1;
   const limit = Number(req.query['limit']) || 10;
@@ -137,7 +169,7 @@ function getUsers(
       cpf: user.cpf,
       cidade: user.cidade,
     })),
-    totalCount: allUsers.length, // Aqui usamos o total após o filtro por nome.
+    totalCount: allUsers.length,
   };
 }
 
@@ -157,7 +189,6 @@ function checkAuthToken(req: Request, res: Response, next: any) {
 
   const token = authHeader.split(' ')[1];
 
-  console.log(token);
   if (
     token !==
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsInRva2VuIjoiYWNjZXNzVG9rZW4ifQ.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.fdiDY5a6w6flT3R1Zh638aUvI4BBvDHKeH0VOts_POM'

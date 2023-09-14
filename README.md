@@ -1,27 +1,40 @@
-# ArqmedesFrontChallenge
+# ARQMEDES FRONT-END CHALLENGE
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.1.
+Descrição breve sobre o que o projeto faz e seu objetivo.
 
-## Development server
+## 🛠️ Pré-requisitos
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Certifique-se de ter [Node.js](https://nodejs.org/) e [npm](https://www.npmjs.com/) instalados em sua máquina.
 
-## Code scaffolding
+## 🚀 Instalação
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Antes de rodar o projeto pela primeira vez, é importante instalar todas as dependências. Para fazer isso, siga os passos abaixo:
 
-## Build
+1. Navegue até a pasta raiz do projeto via terminal ou prompt de comando.
+2. Execute o seguinte comando para instalar as dependências:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```bash
+npm install
+```
 
-## Running unit tests
+## 🏃‍♂️ Rodando o Projeto
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### 📡 Servidor JSON
 
-## Running end-to-end tests
+Para iniciar o servidor JSON, execute o seguinte comando:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```bash
+npm run server
+```
 
-## Further help
+O servidor estará ativo e ouvindo requisições após a execução deste comando.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### 🌐 Aplicação Angular
+
+Para iniciar a aplicação Angular, rode o comando:
+
+```bash
+npm run start
+```
+
+Após o comando, a aplicação estará disponível em `http://localhost:4200/` ou caso esteja ocupada, alguma porta definida pelo Angular.

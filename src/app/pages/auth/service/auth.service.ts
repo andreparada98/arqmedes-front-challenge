@@ -17,6 +17,10 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   }
 
+  public setUser(user: UserToken) {
+    this.currentUserSubject.next(user);
+  }
+
   public isLoggedIn(): boolean {
     return this.currentUserValue !== null;
   }

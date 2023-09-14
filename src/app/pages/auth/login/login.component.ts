@@ -2,7 +2,7 @@ import { LoginService } from './login.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { first, takeUntil } from 'rxjs';
+import { first, switchMap, takeUntil, tap } from 'rxjs';
 import { private_route, public_route } from 'src/shared/constants/routes';
 import { LoginDto } from './models/login.dto';
 import { BaseComponent } from 'src/shared/model/base-component';
@@ -31,20 +31,21 @@ export class LoginComponent extends BaseComponent implements OnInit {
 
   private createFormGroup() {
     this.signInForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.maxLength(8)]],
+      email: ['admin@admin.com', [Validators.required, Validators.email]],
+      password: ['123', [Validators.required, Validators.maxLength(8)]],
     });
   }
 
-  public submit() {
+  submit() {
     this.loading = true;
     const payload: LoginDto = this.signInForm.value;
     this.loginService
       .loginHook(payload)
       .pipe(takeUntil(this.unsubscribe))
       .subscribe({
-        next: (data) => {
-          this.router.navigate([`${private_route.home}`]);
+        next: () => {
+          this.loading = false;
+          this.router.navigate([`${private_route.user_list}`]);
         },
         error: (error) => {
           this.loading = false;
