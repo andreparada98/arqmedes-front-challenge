@@ -43,8 +43,8 @@ export class LoginComponent extends BaseComponent implements OnInit {
       .loginHook(payload)
       .pipe(takeUntil(this.unsubscribe))
       .subscribe({
-        next: (data) => {
-          this.router.navigate([`${private_route.home}`]);
+        next: () => {
+          this.router.navigate([`${private_route.user_list}`]);
         },
         error: (error) => {
           this.loading = false;
