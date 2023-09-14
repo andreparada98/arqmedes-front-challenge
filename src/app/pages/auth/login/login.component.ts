@@ -31,8 +31,8 @@ export class LoginComponent extends BaseComponent implements OnInit {
 
   private createFormGroup() {
     this.signInForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.maxLength(8)]],
+      email: ['admin@admin.com', [Validators.required, Validators.email]],
+      password: ['123', [Validators.required, Validators.maxLength(8)]],
     });
   }
 

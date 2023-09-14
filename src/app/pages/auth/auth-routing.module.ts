@@ -8,6 +8,10 @@ const routes: Routes = [
     path: public_route.login,
     component: LoginComponent,
   },
+  {
+    path: '**',
+    redirectTo: 'login',
+  },
 ];
 
 @NgModule({
