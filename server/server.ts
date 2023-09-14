@@ -65,9 +65,10 @@ server.post('/users', checkAuthToken, async (req: Request, res: Response) => {
 server.get('/users', checkAuthToken, (req: Request, res: Response) => {
   let page = Number(req.query['page']) || 1;
   const limit = Number(req.query['limit']) || 10;
+  const nameFilter = req.query['name'] as string | undefined;
   let offset = (page - 1) * limit;
 
-  const { users, totalCount } = getUsers(offset, limit);
+  const { users, totalCount } = getUsers(offset, limit, nameFilter);
   const pageNumber = Math.ceil(offset / limit) + 1;
 
   res.send({
@@ -115,18 +116,28 @@ server.delete('/users/:id', checkAuthToken, (req: Request, res: Response) => {
 
 function getUsers(
   offset: number,
-  limit: number
+  limit: number,
+  name?: string
 ): { users: User[]; totalCount: number } {
-  const allUsers = readUsers();
+  let allUsers = readUsers();
+
+  if (name) {
+    allUsers = allUsers.filter((user: User) =>
+      user.nome.toLowerCase().includes(name.toLowerCase())
+    );
+  }
+
   const paginatedUsers = allUsers.slice(offset, offset + limit);
+
   return {
     users: paginatedUsers.map((user: User) => ({
+      id: user.id,
       nome: user.nome,
       dataNascimento: user.dataNascimento,
       cpf: user.cpf,
       cidade: user.cidade,
     })),
-    totalCount: allUsers.length,
+    totalCount: allUsers.length, // Aqui usamos o total após o filtro por nome.
   };
 }
 
