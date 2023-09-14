@@ -31,7 +31,7 @@ O servidor estará ativo e ouvindo requisições após a execução deste comand
 
 ### 🌐 Aplicação Angular
 
-Para iniciar a aplicação Angular, rode o comando:
+Para iniciar a aplicação Angular,e m um novo terminal ou janela de prompt de comando, navegue até a pasta raiz do projeto e rode o comando:
 
 ```bash
 npm run start
