@@ -1,0 +1,53 @@
+#login_page {
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background: azure;
+
+    .login-card {
+      width: 100%;
+      max-width: 28.4375rem;
+      height: auto;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #ffffff;
+      border-radius: 4px;
+      gap: 1rem;
+    }
+
+    .input_wrap {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 90%;
+      margin: 0 auto;
+
+      input {
+        width: 100%;
+        border-radius: 4px;
+        height: 1.5rem;
+      }
+    }
+
+    .submit {
+      width: 90%;
+      max-width: 300px;
+      height: 2.25rem;
+      border-radius: 4px;
+      margin-top: 1rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .login-card {
+      gap: 0.5rem;
+      padding: 0.5rem;
+    }
+  }
+}
