@@ -99,7 +99,6 @@ export class UsersCreateComponent implements OnInit {
         });
       },
       error: (err) => {
-        console.log(err);
         if (err.error.errors && err.error.errors.length > 0) {
           this.matSnackBar.open(err.error.errors[0], 'Fechar', {
             duration: 3000,
@@ -122,7 +121,6 @@ export class UsersCreateComponent implements OnInit {
         });
       },
       error: (err) => {
-        console.log(err);
         if (err.error.errors && err.error.errors.length > 0) {
           this.matSnackBar.open(err.error.errors[0], 'Fechar', {
             duration: 3000,

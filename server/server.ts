@@ -169,7 +169,7 @@ function getUsers(
       cpf: user.cpf,
       cidade: user.cidade,
     })),
-    totalCount: allUsers.length, // Aqui usamos o total após o filtro por nome.
+    totalCount: allUsers.length,
   };
 }
 
@@ -189,7 +189,6 @@ function checkAuthToken(req: Request, res: Response, next: any) {
 
   const token = authHeader.split(' ')[1];
 
-  console.log(token);
   if (
     token !==
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsInRva2VuIjoiYWNjZXNzVG9rZW4ifQ.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.fdiDY5a6w6flT3R1Zh638aUvI4BBvDHKeH0VOts_POM'
