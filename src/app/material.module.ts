@@ -7,6 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [],
@@ -19,6 +21,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatProgressSpinnerModule,
     MatSelectModule,
     MatSnackBarModule,
+    MatTableModule,
+    MatPaginatorModule,
   ],
   exports: [
     MatFormFieldModule,
@@ -29,6 +33,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatProgressSpinnerModule,
     MatSelectModule,
     MatSnackBarModule,
+    MatTableModule,
+    MatPaginatorModule,
   ],
 })
 export class MaterialModule {}
