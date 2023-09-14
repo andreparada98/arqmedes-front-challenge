@@ -1,4 +1,11 @@
 <section class="container">
+  <form [formGroup]="filterForm" class="filter_container">
+    <mat-form-field class="input_wrap" appearance="outline">
+      <mat-label>Nome</mat-label>
+      <input matInput type="text" formControlName="name" />
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </form>
   <table mat-table [dataSource]="users" class="mat-elevation-z8">
     <ng-container matColumnDef="nome">
       <th mat-header-cell *matHeaderCellDef>Nome</th>

@@ -6,6 +6,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { PageEvent } from '@angular/material/paginator';
 import { UsersListRequestDto } from './models/users-list.dto';
 import { BaseListResponseMeta } from 'src/shared/model/base-list.model';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-users-list',
@@ -28,11 +30,35 @@ export class UsersListComponent extends BaseComponent implements OnInit {
     totalItems: 0,
   };
 
-  constructor(private usersListService: UsersListService) {
+  filterForm!: FormGroup;
+
+  constructor(
+    private usersListService: UsersListService,
+    private formBuilder: FormBuilder
+  ) {
     super();
   }
   ngOnInit(): void {
+    this.createFormFilter();
+    this.filterObserver();
     this.getUsersOrThrow({});
+  }
+
+  private filterObserver() {
+    this.filterForm
+      .get('name')
+      ?.valueChanges.pipe(debounceTime(1000))
+      .subscribe((value) => {
+        this.getUsersOrThrow({
+          name: value,
+        });
+      });
+  }
+
+  private createFormFilter() {
+    this.filterForm = this.formBuilder.group({
+      name: [''],
+    });
   }
 
   private getUsersOrThrow(payload: UsersListRequestDto) {

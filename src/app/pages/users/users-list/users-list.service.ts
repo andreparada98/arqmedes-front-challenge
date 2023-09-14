@@ -17,7 +17,7 @@ export class UsersListService {
   ): Observable<BaseListResponse<UsersListResponse>> {
     let params = new HttpParams();
 
-    const { nome, page, pageSize } = payload;
+    const { name, page, pageSize } = payload;
 
     if (page) {
       params = params.append('page', page);
@@ -27,8 +27,8 @@ export class UsersListService {
       params = params.append('pageSize', pageSize);
     }
 
-    if (nome) {
-      params = params.append('nome', nome);
+    if (name) {
+      params = params.append('name', name);
     }
 
     return this.httpClient

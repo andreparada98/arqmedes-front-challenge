@@ -5,3 +5,8 @@ th,
 td {
   text-align: center !important;
 }
+
+.filter_container {
+  display: flex;
+  justify-content: flex-end;
+}
